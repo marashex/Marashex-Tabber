@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>maroshex tabber</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#0a0a0a;--card:#151515;--line:#2a2a2a;--pink:#ff4fa3;--pink2:#ff8cc6;--txt:#f4f4f4;--mut:#9a9a9a;--ok:#7ee0a8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 system-ui,sans-serif}
+header{display:flex;align-items:center;gap:14px;padding:20px 28px;border-bottom:1px solid var(--line)}
+header h1{margin:0;font-size:22px;letter-spacing:.5px}header h1 span{color:var(--pink)}
+.tag{color:var(--pink2);font-style:italic;font-size:13px}
+main{max-width:900px;margin:0 auto;padding:22px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+button,.btn{background:var(--pink);color:#000;border:0;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--pink);border:1px solid var(--pink)}
+label.sw{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+input[type=checkbox]{accent-color:var(--pink);width:16px;height:16px}
+.status{margin-left:auto;color:var(--mut);font-size:13px}
+.card{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.card.star{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset}
+.star-btn{background:none;color:var(--mut);font-size:24px;padding:0 4px}.star-btn.on{color:var(--pink)}
+.info{flex:1}.name{font-weight:650}.when{color:var(--mut);font-size:13px}
+.pill{border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.open{background:var(--pink);color:#000}.full{background:#262626;color:var(--mut)}
+.free{color:var(--ok);font-size:13px}.busy{color:var(--pink2);font-size:13px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:18px}
+summary{cursor:pointer;color:var(--pink)}
+input[type=text],input[type=number]{width:100%;background:#0d0d0d;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px;margin:6px 0 12px}
+small{color:var(--mut)}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 16px 14px;margin-bottom:14px}
+.grp>summary{display:flex;align-items:center;gap:12px;padding:12px 0;cursor:pointer;list-style:none;color:var(--txt)}
+.gname{font-weight:700;font-size:17px;flex:1}.gsum{color:var(--pink2);font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.tile{background:#0d0d0d;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.tile.t-open{border-color:#5a2342}.tile.t-full{opacity:.55}.tile.star{border-color:var(--pink);box-shadow:0 0 0 1px var(--pink) inset}
+.tdate{font-weight:700}.spots{font-size:34px;font-weight:800;line-height:1.1;margin-top:6px}.t-open .spots{color:var(--pink)}
+.trow{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:6px;font-size:12px}
+#prev{border-collapse:collapse;font-size:12px}#prev td{border:1px solid var(--line);padding:3px 8px;white-space:nowrap;color:var(--mut)}#prev tr.hd td{color:var(--pink);font-weight:700}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}select{width:100%;background:#0d0d0d;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px;margin:4px 0 8px}.warn{background:#2a1220;border:1px solid var(--pink);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px}.warn button{padding:4px 10px;margin-left:8px}.mat{color:var(--pink);font-size:12px;font-weight:600;text-decoration:none;border:1px solid var(--pink);border-radius:999px;padding:2px 10px;white-space:nowrap}.mat:hover{background:var(--pink);color:#000}.ttype{font-weight:700}.who{color:var(--pink2);font-size:13px}.loc{color:var(--mut);font-size:12px;margin-top:6px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tabp{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:600}
+.tabp span{margin-left:8px;background:#262626;color:var(--pink2);border-radius:999px;padding:1px 8px;font-size:12px}.tabp.on{background:var(--pink);color:#000;border-color:var(--pink)}.tabp.on span{background:#000;color:var(--pink)}
+.tabbody{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}.thead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.dh{margin:22px 0 10px;color:var(--pink);font-size:15px}.descs{display:grid;gap:10px}.desc{background:#0d0d0d;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}.lnk{color:var(--pink);text-decoration:none}.lnk:hover{text-decoration:underline}</style></head><body>
+<header>
+<svg width="54" height="68" viewBox="0 0 64 80" aria-label="channel marker"><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#ff9fd0"/><stop offset=".45" stop-color="#ff4fa3"/><stop offset="1" stop-color="#c91f78"/></linearGradient></defs>
+<path d="M2 72 q7-6 14 0 t14 0 t14 0 t14 0" fill="none" stroke="#ff4fa3" stroke-opacity=".4" stroke-width="2"/>
+<path d="M2 66 q7-6 14 0 t14 0 t14 0 t14 0" fill="none" stroke="#ff4fa3" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="14" y="58" width="36" height="7" rx="3" fill="#c91f78"/><rect x="14" y="58" width="36" height="4" rx="2" fill="#ff4fa3"/>
+<path d="M32 18 L46 58 H18 Z" fill="url(#cg)"/><path d="M25.7 36 H38.3 L40.4 42 H23.6 Z" fill="#0a0a0a"/>
+<rect x="31" y="8" width="2" height="11" fill="#ff4fa3"/><circle cx="32" cy="6" r="3.4" fill="#ffd1e8"/><circle cx="32" cy="6" r="6" fill="#ff4fa3" fill-opacity=".25"/></svg>
+<div><h1>maroshex <span>tabber</span></h1><div class="tag">tagging in tides</div></div>
+</header>
+<main>
+<div class="bar">
+<button id="check">Check now</button><button class="ghost" id="openSheet">Open sheet</button>
+<label class="sw"><input type="checkbox" id="notifyOpen"> Alert when spots open</label>
+<label class="sw"><input type="checkbox" id="notifyAny"> Alert on any sheet update</label>
+<label class="sw"><input type="checkbox" id="onlyOpen" checked> Open only</label>
+<label class="sw"><input type="checkbox" id="onlyStar"> ★ only</label>
+<button class="ghost" id="calchip"></button><span class="status" id="status"></span>
+</div>
+<div id="warn"></div><div id="list"></div>
+<details id="settings"><summary>Settings &amp; calendar</summary>
+<p><b style="color:var(--pink)">Connect Outlook (Microsoft Graph)</b><br><small>One-time setup in the Azure portal → App registrations → New registration → platform “Single-page application”. Redirect URI (copy this):</small></p>
+<input type="text" id="redir" readonly onclick="this.select()">
+<p><small>Then Authentication → tick “Access tokens” (implicit grant); API permissions → Microsoft Graph → delegated → Calendars.Read. Paste the Application (client) ID:</small></p>
+<input type="text" id="clientId" placeholder="00000000-0000-0000-0000-000000000000">
+<div style="display:flex;gap:10px;align-items:center;margin-bottom:14px"><button id="connect">Connect Outlook</button><button class="ghost" id="disconnect">Disconnect</button><small id="calmsg"></small></div>
+<hr style="border-color:var(--line)"><p><small>No Azure access? Use an ICS link instead.</small></p><p><small>Sheet link</small></p><input type="text" id="sheetUrl">
+<p><small>Outlook calendar ICS link (Outlook web → Settings → Calendar → Shared calendars → Publish a calendar → ICS). Or upload an .ics export below.</small></p>
+<input type="text" id="icsUrl" placeholder="https://outlook.office365.com/owa/calendar/…/calendar.ics">
+<input type="file" id="icsFile" accept=".ics"><label class="sw" style="margin-bottom:12px"><input type="checkbox" id="ignoreAD"> Ignore all-day events (holidays, “out of office”)</label><p><small>Default training length if the sheet has no end time (minutes)</small></p>
+<input type="number" id="durMin" min="15" step="15"><button id="save">Save</button></details>
+<details id="diag"><summary>Sheet or calendar look wrong? See how they're being read</summary>
+<p><small id="diagsum"></small></p><div style="overflow-x:auto"><table id="prev"></table></div>
+<div><small>Tab</small><select id="cSheet"></select></div><p><small>If a column was guessed wrong, pick the right one:</small></p>
+<div class="g2"><div><small>Training name</small><select id="cName"></select></div><div><small>Date</small><select id="cDate"></select></div>
+<div><small>Time</small><select id="cTime"></select></div><div><small>Availability</small><select id="cAvail"></select></div></div>
+<p><small>An availability cell counts as open when…</small></p>
+<select id="cRule"><option value="auto">auto (number &gt; 0, or not “full/closed/waitlist”)</option><option value="empty_open">the cell is blank (names/entries mean taken)</option><option value="filled_open">the cell has something in it</option></select>
+<p><small>People per session (leave blank for auto)</small></p><input type="number" id="cCap" min="1" placeholder="auto"><p><button id="savecfg">Apply</button> <button class="ghost" id="copyLayout">Copy tab layouts</button> <button class="ghost" id="dlSheet">Download sheet copy</button> <button class="ghost" id="copyAll">Copy all tab text</button> <small id="dbgmsg"></small></p></details></main>
+<script src="lib.js"></script><script src="tabber.js"></script></body></html>
